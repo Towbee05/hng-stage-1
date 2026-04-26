@@ -9,7 +9,7 @@ from .utils import fetch_external_api, get_age_group, most_probable_country, err
 api = NinjaAPI()
 
 # Create your views here.
-@api.post('', response={200:SuccessResponse, 400:ErrorResponse, 408:ErrorResponse, 500: ErrorResponse, 502: ErrorResponse})
+@api.post('', response={200:SuccessResponse, 201: SuccessResponse, 400:ErrorResponse, 408:ErrorResponse, 500: ErrorResponse, 502: ErrorResponse})
 async def create_person(request, payload: CreatePersonSchema):
     name = payload.name.strip()
     if not name:
