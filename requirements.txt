@@ -2,6 +2,7 @@ django
 djangorestframework
 requests
 psycopg
+psycopg2
 dotenv
 django-ninja
 aiohttp
