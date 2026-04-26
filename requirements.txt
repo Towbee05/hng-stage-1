@@ -1,0 +1,8 @@
+django
+djangorestframework
+requests
+psycopg
+dotenv
+django-ninja
+aiohttp
+httpx
