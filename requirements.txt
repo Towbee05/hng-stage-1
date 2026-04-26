@@ -6,3 +6,4 @@ dotenv
 django-ninja
 aiohttp
 httpx
+django-cors-headers
