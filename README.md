@@ -22,3 +22,8 @@ This is a profile intelligence system that accepts a name and submit the name to
 - [Django](https://www.djangoproject.com/): Python backend framework
 - [Django-ninja](https://django-ninja.dev/): Django library for effective design of APIs
 - [PostgreSQL](https://www.postgresql.org/): For database management
+
+## Live Application
+
+- [Github](https://github.com/towbee05/hng-stage-1)
+- [Live mode](https://hng-stage-1-coral-psi.vercel.app/)
