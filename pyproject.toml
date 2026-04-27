@@ -13,5 +13,6 @@ dependencies = [
     "dotenv>=0.9.9",
     "httpx>=0.28.1",
     "psycopg>=3.3.3",
+    "psycopg2>=2.9.12",
     "requests>=2.33.1",
 ]
