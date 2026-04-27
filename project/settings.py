@@ -86,9 +86,10 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 #}
-if os.getenv('ENVIRONMENT') == "PRODUCTION":
+
+if os.getenv("ENVIRONMENT") == "PRODUCTION":
     DATABASES = {
-        'default': {
+      'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': os.getenv("PROD_POSTGRES_NAME"),
             'USER': os.getenv("PROD_POSTGRES_USER"),

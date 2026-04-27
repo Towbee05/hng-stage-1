@@ -8,15 +8,6 @@ services:
       - db
     volumes:
       - .:/app
-    environment:
-      DJANGO_SECRET_KEY: ${SECRET_KEY}
-      DJANGO_DEBUG: ${DEBUG}
-
-      DATABASE_NAME: ${POSTGRES_NAME}
-      DATABASE_USER: ${POSTGRES_USER}
-      DATABASE_HOST: ${POSTGRES_HOST}
-      DATABASE_PORT: ${POSTGRES_PORT}
-      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
     env_file:
       - .env
   db:
