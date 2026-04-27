@@ -86,17 +86,35 @@ WSGI_APPLICATION = 'project.wsgi.application'
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 #}
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'PORT': os.getenv('POSTGRES_PORT'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+if os.getenv('ENVIRONMENT') == "PRODUCTION":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv("PROD_POSTGRES_NAME"),
+            'USER': os.getenv("PROD_POSTGRES_USER"),
+            'HOST': os.getenv("PROD_POSTGRES_HOST"),
+            'PORT': os.getenv('DATABASE_PORT'),
+            'PASSWORD': os.getenv('PROD_POSTGRES_PASSWORD'),
+            'OPTIONS': {
+                'sslmode': 'require',
+                'connect_timeout': 20,
+            },    
+            'DISABLE_SERVER_SIDE_CURSORS': True,
+            'CONN_HEALTH_CHECKS': True,
+            'CONN_MAX_AGE': 0,
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': os.getenv('DATABASE_NAME'),
+            'USER': os.getenv('DATABASE_USER'),
+            'HOST': os.getenv('DATABASE_HOST'),
+            'PORT': os.getenv('DATABASE_PORT'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD')
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

@@ -12,6 +12,6 @@ dependencies = [
     "djangorestframework>=3.17.1",
     "dotenv>=0.9.9",
     "httpx>=0.28.1",
-    "psycopg2-binary>=2.9.12",
+    "psycopg[binary]>=3.3.3",
     "requests>=2.33.1",
 ]
