@@ -26,4 +26,4 @@ This is a profile intelligence system that accepts a name and submit the name to
 ## Live Application
 
 - [Github](https://github.com/towbee05/hng-stage-1)
-- [Live mode](https://hng-stage-1-coral-psi.vercel.app/)
+- [Live mode](hng-stage-1-eight-tan.vercel.app)
