@@ -72,7 +72,7 @@ async def get_all_profiles(request):
         people = await sync_to_async(list)(PersonModel.objects.all())
         return 200, { "status": "success", "count": len(people), "data": people }
     except Exception as e:
-        print(e)
+        raise e
         return 500, errorHandler(500, "An unexpected error occurred while fetching the person data")
 
 @api.get('/{id}', response={ 200: SuccessResponse, 404: ErrorResponse, 500: ErrorResponse })
