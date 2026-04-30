@@ -14,18 +14,45 @@ class AgeGroupChoices(str, enum.Enum):
     ADULT = 'adult'
     SENIOR = 'senior'
 
+# class PersonSchema(Schema):
+#     id: UUID
+#     name: str 
+#     gender: GenderChoices 
+#     gender_probability: float
+#     sample_size: int 
+#     age: int 
+#     age_group: AgeGroupChoices 
+#     country_id: str
+#     country_probability: float
+#     created_at: datetime
+
 class PersonSchema(Schema):
     id: UUID
     name: str 
     gender: GenderChoices 
     gender_probability: float
-    sample_size: int 
     age: int 
     age_group: AgeGroupChoices 
     country_id: str
+    country_name: str
     country_probability: float
     created_at: datetime
      
+class FilterParams(Schema):
+    gender: str | None = None
+    age_group: str | None = None
+    country_id: str | None = None
+    country: str | None = None
+    min_age: int | None = None
+    max_age: int | None = None
+    min_gender_probability: int | float | None = None
+    min_country_probability: int | float | None = None
+    sort_by: str | None = None
+    order: str | None = None
+    page: int | None = None
+    limit: int | None = None
+    q: str | None = None
+
 class CreatePersonSchema(Schema):
     name: str 
 
@@ -39,6 +66,7 @@ class SuccessResponse(Schema):
 
 class SuccessMultipleResponse(Schema):
     status: str
+    page: int
     count: int
     data: List[PersonSchema]
 

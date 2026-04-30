@@ -14,14 +14,25 @@ class PersonModel(models.Model):
         ADULT = 'adult', _('adult')
         SENIOR = 'senior', _('senior')
 
+    # id = models.UUIDField(default=uuid.uuid7, editable=False, primary_key=True)
+    # name = models.CharField(max_length=75, verbose_name=_("Name"))
+    # gender = models.CharField(choices=GENDER_CHOICES.choices, max_length=7, verbose_name=_("Gender"))
+    # gender_probability = models.DecimalField(decimal_places=2, max_digits=10, verbose_name=_('Gender probability'))
+    # sample_size = models.PositiveIntegerField(verbose_name=_("Sample size"))
+    # age = models.PositiveIntegerField(verbose_name=_("Age"))
+    # age_group = models.CharField(choices=AGE_GROUP_CHOICES.choices, max_length=10, verbose_name=_("Age Group"))
+    # country_id = models.CharField(max_length=5, verbose_name=_("Country ID"))
+    # country_probability = models.DecimalField(decimal_places=2, max_digits=10, verbose_name=_('Country probability'))
+    # created_at = models.DateTimeField(auto_now_add=True)
+    
     id = models.UUIDField(default=uuid.uuid7, editable=False, primary_key=True)
     name = models.CharField(max_length=75, verbose_name=_("Name"))
     gender = models.CharField(choices=GENDER_CHOICES.choices, max_length=7, verbose_name=_("Gender"))
     gender_probability = models.DecimalField(decimal_places=2, max_digits=10, verbose_name=_('Gender probability'))
-    sample_size = models.PositiveIntegerField(verbose_name=_("Sample size"))
     age = models.PositiveIntegerField(verbose_name=_("Age"))
     age_group = models.CharField(choices=AGE_GROUP_CHOICES.choices, max_length=10, verbose_name=_("Age Group"))
     country_id = models.CharField(max_length=5, verbose_name=_("Country ID"))
+    country_name = models.CharField(max_length=75, verbose_name=_("Country Name"))
     country_probability = models.DecimalField(decimal_places=2, max_digits=10, verbose_name=_('Country probability'))
     created_at = models.DateTimeField(auto_now_add=True)
     
@@ -29,7 +40,8 @@ class PersonModel(models.Model):
         indexes = [
             models.Index(fields=['id', 'name'])
         ]
-        verbose_name="Person"
-        verbose_name_plural = "People"
+        db_table='profiles'
+        verbose_name="profile"
+        verbose_name_plural = "profiles"
     def __str__(self):
         return self.name
