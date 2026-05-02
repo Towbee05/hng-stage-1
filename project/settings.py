@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from datetime import timedelta
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,9 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ninja',
+    'ninja_jwt',
     'rest_framework',
     'corsheaders',
-    'core'
+    'core',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -162,3 +165,16 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+AUTH_USER_MODEL='users.CustomUser'
+
+GITHUB_CLIENT_ID=os.getenv('GITHUB_OAUTH_CLIENT_ID')
+GITHUB_CLIENT_SECRET=os.getenv('GITHUB_OAUTH_CLIENT_SECRET')
+
+NINJA_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=3),
+    'REFRESH_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': False,
+    'UPDATE_LAST_LOGIN': False,
+}

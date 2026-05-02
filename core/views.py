@@ -4,7 +4,9 @@ from ninja import NinjaAPI, Query
 from .models import PersonModel
 from asgiref.sync import sync_to_async
 from .schemas import CreatePersonSchema, SuccessResponse, ErrorResponse, SuccessMultipleResponse, FilterParams
-from .utils import fetch_external_api, get_age_group, most_probable_country, errorHandler, parse_search_query
+from utils.errorHandler import errorHandler
+from utils.query_parser import parse_search_query
+from utils.api_request_handler import fetch_external_api, most_probable_country, get_age_group
 import re
 api = NinjaAPI()
 
