@@ -8,3 +8,6 @@
 2026-05-04 22:26:55,331 INFO core.middleware Method: GET | Endpoint: /.well-known/appspecific/com.chrome.devtools.json | Status: 404| Response-Time: 0.0234ms
 2026-05-04 22:26:55,332 WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
 2026-05-04 22:27:59,739 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\core\middleware.py changed, reloading.
+2026-05-04 22:33:13,596 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-04 22:33:43,167 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\core\views.py changed, reloading.
+2026-05-04 22:33:49,484 INFO django.utils.autoreload Watching for file changes with StatReloader

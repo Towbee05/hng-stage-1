@@ -124,10 +124,10 @@ def get_all_profiles(request, filters: FilterParams= Query(...), api_version: st
             "data": filtered_people
         }
     except Exception as e:
-        raise e
+        # raise e
         return 500, errorHandler(500, "An unexpected error occurred while fetching the person data")
 
-@api.get('/search', auth=AuthBearer() response={ 200:SuccessMultipleResponse, 400: ErrorResponse, 500: ErrorResponse })
+@api.get('/search', auth=AuthBearer(), response={ 200:SuccessMultipleResponse, 400: ErrorResponse, 500: ErrorResponse })
 def search_database(request, q: str | None = None, api_version: str | None= Header(alias='X-API-Version', default=None)):
     try:
         if api_version is None:
