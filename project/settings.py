@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'core.middleware.CustomLoggerMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -80,16 +81,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
-
 if os.getenv("ENVIRONMENT") == "PRODUCTION":
     DATABASES = {
       'default': {
@@ -102,7 +93,7 @@ if os.getenv("ENVIRONMENT") == "PRODUCTION":
             'OPTIONS': {
                 'sslmode': 'require',
                 'connect_timeout': 20,
-            },    
+            },
             'DISABLE_SERVER_SIDE_CURSORS': True,
             'CONN_HEALTH_CHECKS': True,
             'CONN_MAX_AGE': 0,
@@ -177,4 +168,38 @@ NINJA_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': False,
+}
+
+JWT_SECRET= os.getenv('JWT_SECRET')
+JWT_SECRET_ALGORITHM= os.getenv('JWT_SECRET_ALGORITHM')
+# expity time of token in seconds
+JWT_ACCESS_EXP_TIME= timedelta(minutes=60)
+JWT_REFRESH_EXP_TIME= timedelta(minutes=120)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{asctime} {levelname} {name} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": "logger_info.log",
+            "formatter": "verbose",
+        },
+    },
+    "loggers": {
+        "root": {
+            "handlers": ["file"],
+            "level": "INFO",
+        },
+        "ninja_aio": {
+            "handlers": ["file"],
+            "level": "INFO",
+        },
+    },
 }

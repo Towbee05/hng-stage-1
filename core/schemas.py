@@ -1,5 +1,5 @@
 from ninja import Schema
-from uuid import UUID 
+from uuid import UUID
 from datetime import datetime
 import enum
 from typing import List
@@ -14,30 +14,18 @@ class AgeGroupChoices(str, enum.Enum):
     ADULT = 'adult'
     SENIOR = 'senior'
 
-# class PersonSchema(Schema):
-#     id: UUID
-#     name: str 
-#     gender: GenderChoices 
-#     gender_probability: float
-#     sample_size: int 
-#     age: int 
-#     age_group: AgeGroupChoices 
-#     country_id: str
-#     country_probability: float
-#     created_at: datetime
-
 class PersonSchema(Schema):
     id: UUID
-    name: str 
-    gender: GenderChoices 
+    name: str
+    gender: GenderChoices
     gender_probability: float
-    age: int 
-    age_group: AgeGroupChoices 
+    age: int
+    age_group: AgeGroupChoices
     country_id: str
     country_name: str
     country_probability: float
     created_at: datetime
-     
+
 class FilterParams(Schema):
     gender: str | None = None
     age_group: str | None = None
@@ -49,12 +37,11 @@ class FilterParams(Schema):
     min_country_probability: int | float | None = None
     sort_by: str | None = None
     order: str | None = None
-    page: int | None = None
-    limit: int | None = None
-    q: str | None = None
+    page: int | None = 1
+    limit: int | None = 10
 
 class CreatePersonSchema(Schema):
-    name: str 
+    name: str
 
 class SuccessResponse(Schema):
     status: str
@@ -64,11 +51,20 @@ class SuccessResponse(Schema):
     class Config:
         from_attrtibutes = True
 
+class LinksSchema(Schema):
+    self: str
+    next: str
+    prev: str
+
 class SuccessMultipleResponse(Schema):
     status: str
     page: int
-    count: int
+    limit: int
+    total: int
+    total_pages: int
+    links: LinksSchema
     data: List[PersonSchema]
+
 
 class CountryProb(Schema):
     country_id: str
@@ -100,4 +96,3 @@ class ApiResult(Schema):
     success: bool
     data: ApiData | None
     error: ErrorResponse | None
-

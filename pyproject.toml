@@ -14,5 +14,7 @@ dependencies = [
     "dotenv>=0.9.9",
     "httpx>=0.28.1",
     "psycopg[binary]>=3.3.3",
+    "reportlab>=4.5.0",
     "requests>=2.33.1",
+    "spire-pdf>=12.4.1",
 ]

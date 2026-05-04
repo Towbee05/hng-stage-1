@@ -8,3 +8,5 @@ aiohttp
 httpx
 django-cors-headers
 django-ninja-jwt
+spire.pdf
+reportlab

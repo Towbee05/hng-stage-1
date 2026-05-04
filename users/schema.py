@@ -23,3 +23,6 @@ class UserSchema(Schema):
     is_active: bool
     created_at: bool
     
+class PassToClientSchema(Schema):
+    authentication_url: str
+    state: str

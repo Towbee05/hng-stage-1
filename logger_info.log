@@ -1,0 +1,10 @@
+2026-05-04 22:26:17,197 INFO core.middleware Method: GET | Endpoint: /api/profiles/search | Status: 200| Response-Time: 0.2294ms
+2026-05-04 22:26:17,534 INFO core.middleware Method: GET | Endpoint: /.well-known/appspecific/com.chrome.devtools.json | Status: 404| Response-Time: 0.0479ms
+2026-05-04 22:26:17,534 WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-05-04 22:26:35,407 INFO core.middleware Method: GET | Endpoint: /api/profiles/search | Status: 200| Response-Time: 0.2322ms
+2026-05-04 22:26:35,585 INFO core.middleware Method: GET | Endpoint: /.well-known/appspecific/com.chrome.devtools.json | Status: 404| Response-Time: 0.0254ms
+2026-05-04 22:26:35,585 WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-05-04 22:26:55,135 INFO core.middleware Method: GET | Endpoint: /api/profiles/search | Status: 200| Response-Time: 0.2647ms
+2026-05-04 22:26:55,331 INFO core.middleware Method: GET | Endpoint: /.well-known/appspecific/com.chrome.devtools.json | Status: 404| Response-Time: 0.0234ms
+2026-05-04 22:26:55,332 WARNING django.request Not Found: /.well-known/appspecific/com.chrome.devtools.json
+2026-05-04 22:27:59,739 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\core\middleware.py changed, reloading.
