@@ -96,8 +96,6 @@ def get_all_profiles(request, filters: FilterParams= Query(...), api_version: st
         if api_version is None:
             return 400, errorHandler(status=400, message="API version header required")
         user = request.auth
-        if user is None:
-            return 401, errorHandler(401, "Please provide valid access token to access resources")
         people = PersonModel.objects.all()
 
         applied_filter, people = filter_database(filters, people)
@@ -129,9 +127,11 @@ def get_all_profiles(request, filters: FilterParams= Query(...), api_version: st
         raise e
         return 500, errorHandler(500, "An unexpected error occurred while fetching the person data")
 
-@api.get('/search', response={ 200:SuccessMultipleResponse, 400: ErrorResponse, 500: ErrorResponse })
-def search_database(request, q: str | None = None):
+@api.get('/search', auth=AuthBearer() response={ 200:SuccessMultipleResponse, 400: ErrorResponse, 500: ErrorResponse })
+def search_database(request, q: str | None = None, api_version: str | None= Header(alias='X-API-Version', default=None)):
     try:
+        if api_version is None:
+            return 400, errorHandler(status=400, message="API version header required")
         if q is None or q.strip() == '':
             return 400, errorHandler(400, "Please enter search value")
         filters = parse_search_query(q)
@@ -161,10 +161,10 @@ def search_database(request, q: str | None = None):
         print(e)
         return 500, errorHandler(500, "An unexpected error occurred while fetching the person data")
 
-@api.get('/export', response={ 400: ErrorResponse, 422: ErrorResponse})
+@api.get('/export', auth=AuthBearer(), response={ 400: ErrorResponse, 422: ErrorResponse})
 def export_data(request, format: str | None = None, filters: FilterParams=Query(...) ,api_version: str | None = Header(alias="X-API-Version", default=None)):
-    # if api_version is None:
-    #     return 400, errorHandler(400, "API version header required")
+    if api_version is None:
+        return 400, errorHandler(400, "API version header required")
 
     if format is None:
         return 400, errorHandler(400, "Please select format to export: (csv, pdf, json)")
