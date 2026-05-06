@@ -383,3 +383,22 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 2026-05-06 21:38:52,723 WARNING django.request Unprocessable Content: /api/profiles/export
 2026-05-06 21:39:42,260 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 0.4180ms
 2026-05-06 21:40:10,667 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 0.3902ms
+2026-05-06 22:26:42,159 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 22:27:36,886 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 22:39:19,116 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 22:40:28,150 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 22:41:59,443 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 22:42:33,001 INFO core.middleware Method: GET | Endpoint: / | Status: 200 | Response-Time: 6.0168ms
+2026-05-06 22:43:25,282 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 23:02:22,403 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\core\migrations\__init__.py changed, reloading.
+2026-05-06 23:02:30,151 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-06 23:09:45,999 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 401 | Response-Time: 0.2052ms
+2026-05-06 23:09:46,017 WARNING django.request Unauthorized: /api/profiles/export
+2026-05-06 23:09:48,232 INFO core.middleware Method: POST | Endpoint: /auth/refresh | Status: 401 | Response-Time: 2.1509ms
+2026-05-06 23:09:48,233 WARNING django.request Unauthorized: /auth/refresh
+2026-05-06 23:10:01,299 INFO core.middleware Method: GET | Endpoint: /auth/github | Status: 200 | Response-Time: 0.0021ms
+2026-05-06 23:10:08,105 INFO core.middleware Method: GET | Endpoint: /auth/github/callback | Status: 200 | Response-Time: 4.0942ms
+2026-05-06 23:10:09,691 INFO core.middleware Method: GET | Endpoint: /auth/github/poll | Status: 200 | Response-Time: 0.0035ms
+2026-05-06 23:10:54,399 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 2.0620ms
+2026-05-06 23:14:40,616 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 2.5262ms
+2026-05-06 23:15:20,446 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 2.2612ms
