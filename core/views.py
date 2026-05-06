@@ -12,6 +12,7 @@ from utils.get_links import get_links
 from users.views import AuthBearer
 from .models import PersonModel
 import tempfile
+import logging
 import uuid
 import asyncio
 import re
@@ -19,12 +20,14 @@ import io
 import json
 import csv
 
+logger = logging.getLogger(__name__)
+
 api = NinjaAPI(throttle=[AnonRateThrottle("60/m"), AuthRateThrottle("60/m")])
 # Create your views here.
 @api.post('', auth=AuthBearer(), response={
-    200:SuccessResponse, 201: SuccessResponse,
-    400:ErrorResponse, 401: ErrorResponse,
-    403: ErrorResponse, 408:ErrorResponse,
+    201: SuccessResponse,
+    400:ErrorResponse, 401: dict,
+    408:ErrorResponse,
     500: ErrorResponse, 502: ErrorResponse
     })
 async def create_person(request, payload: CreatePersonSchema, api_version: str | None = Header(alias='X-API-Version', default=None)):
@@ -32,9 +35,9 @@ async def create_person(request, payload: CreatePersonSchema, api_version: str |
         return 400, errorHandler(status=400, message="API version header required")
     user = request.auth
     if user is None:
-        return 401, errorHandler(401, "Please provide valid access token to access resources")
+        return 401, {'detail': "Please provide valid access token to access resources"}
     if not user.is_admin:
-        return 403, errorHandler(401, "Unauthorized entry")
+        return 401, {'detail': "Unauthorized entry"}
 
     name = payload.name.strip()
     if not name:
@@ -100,16 +103,17 @@ def get_all_profiles(request, filters: FilterParams= Query(...), api_version: st
 
         applied_filter, people = filter_database(filters, people)
         limit, page = applied_filter.limit, applied_filter.page
+        print(applied_filter)
 
         if limit > 50:
             return 422, errorHandler(422, "Invalid query parameters")
         if page < 1:
             return 422, errorHandler(422, "Invalid query parameters")
 
-        start = (page - 1) * limit
-        end = start + limit
-        filtered_people = people[start:end]
-        total = people.count()
+        # start = (page - 1) * limit
+        # end = start + limit
+        # people = people[start:end]
+        total = PersonModel.objects.count()
         total_pages = round(total / limit)
 
         # Computing current link, next, and previos links
@@ -121,15 +125,16 @@ def get_all_profiles(request, filters: FilterParams= Query(...), api_version: st
             "total": total,
             "total_pages": total_pages,
             "links": LinksSchema(self=curr, next=next, prev=prev),
-            "data": filtered_people
+            "data": people
         }
     except Exception as e:
-        # raise e
+        logger.error(str(e))
         return 500, errorHandler(500, "An unexpected error occurred while fetching the person data")
 
 @api.get('/search', auth=AuthBearer(), response={ 200:SuccessMultipleResponse, 400: ErrorResponse, 500: ErrorResponse })
 def search_database(request, q: str | None = None, api_version: str | None= Header(alias='X-API-Version', default=None)):
     try:
+        print(q)
         if api_version is None:
             return 400, errorHandler(status=400, message="API version header required")
         if q is None or q.strip() == '':
@@ -156,7 +161,6 @@ def search_database(request, q: str | None = None, api_version: str | None= Head
             "total_pages": total_pages,
             "links": LinksSchema(self=curr, next=next, prev=prev), "data": filtered_people
         }
-
     except Exception as e:
         print(e)
         return 500, errorHandler(500, "An unexpected error occurred while fetching the person data")

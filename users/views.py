@@ -35,7 +35,6 @@ class AuthBearer(HttpBearer):
             if payload['type'] != 'access':
                 return None
             user = User.objects.get(id=uuid.UUID(payload['user_id']))
-            print(user)
             return user
         except jwt.ExpiredSignatureError:
             return None
@@ -116,7 +115,7 @@ def poll_github_for_token(request, state: str):
 
 
 @api.post('/refresh', response={
-    200: TokenPairOutputResponseSchema, 401: ErrorResponse, 404: ErrorResponse, 500: ErrorResponse
+    201: TokenPairOutputResponseSchema, 401: ErrorResponse, 404: ErrorResponse, 422: ErrorResponse, 500: ErrorResponse
 })
 def refresh_access_token(request, payload: TokenRefreshInputSchema):
     try:
@@ -126,12 +125,15 @@ def refresh_access_token(request, payload: TokenRefreshInputSchema):
             return 400, errorHandler(400, "Please provide valid refresh token")
         user = User.objects.get(id=uuid.UUID(refresh['user_id']))
         token = create_user_access_token(user)
-        return 200, TokenPairOutputResponseSchema(status='success', data=TokenPairOutputSchema(access_token=str(token.access_token), refresh_token=str(token.refresh_token)))
+        return 201, TokenPairOutputResponseSchema(status='success', data=TokenPairOutputSchema(access_token=str(token.access_token), refresh_token=str(token.refresh_token)))
     except jwt.ExpiredSignatureError:
+        print("expired token")
         return 401, errorHandler(401, 'Refresh token is expired')
     except User.DoesNotExist:
+        print("user does not exist")
         return 401, errorHandler(401, "Invalid refresh token")
     except Exception as e:
+        print(e)
         return 500, errorHandler(500, 'An error occured.')
 
 
