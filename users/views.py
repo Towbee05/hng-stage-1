@@ -21,7 +21,7 @@ api = NinjaAPI(
     throttle=[
         AnonRateThrottle("10/m"),
         AuthRateThrottle("10/m")
-    ]
+    ], urls_namespace="auth"
 )
 User = get_user_model()
 # load_dotenv()
@@ -44,7 +44,7 @@ class AuthBearer(HttpBearer):
             print(e)
             return None
 
-@api.get('/github', response={200: PassToClientSchema})
+@api.get('/github', response={200: PassToClientSchema}, url_name="login")
 def github_login(request):
     # Redirect users to the github login page
     code_verifier, code_hash = generate_pcke()
