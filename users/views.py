@@ -48,12 +48,10 @@ class AuthBearer(HttpBearer):
 def github_login(request):
     # Redirect users to the github login page
     code_verifier, code_hash = generate_pcke()
-    print("Code verifier within login function")
-    print(code_verifier)
     state = secrets.token_urlsafe(16)
     cache.set(f'pkce_{state}', code_verifier)
     client_ID = settings.GITHUB_CLIENT_ID
-    callback_url='http://localhost:8000/auth/github/callback'
+    callback_url=settings.CALLBACK_URL
     url = f'https://github.com/login/oauth/authorize?client_id={client_ID}&redirect_uri={callback_url}&code_challenge={code_hash}&code_challenge_method=S256&state={state}'
     return 200, PassToClientSchema(authentication_url=url, state=state)
 
