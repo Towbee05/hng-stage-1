@@ -20,7 +20,7 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.db_version, name='db_version'),
+    path('', views.redirect_user, name='redirect_users'),
     path('api/profiles/', include('core.urls')),
     path('auth/', include('users.urls'))
 ]

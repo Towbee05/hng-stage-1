@@ -402,3 +402,45 @@ RuntimeError: You called this URL via POST, but the URL doesn't end in a slash a
 2026-05-06 23:10:54,399 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 2.0620ms
 2026-05-06 23:14:40,616 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 2.5262ms
 2026-05-06 23:15:20,446 INFO core.middleware Method: GET | Endpoint: /api/profiles/export | Status: 200 | Response-Time: 2.2612ms
+2026-05-07 00:49:33,236 INFO core.middleware Method: GET | Endpoint: /auth/github | Status: 200 | Response-Time: 0.1218ms
+2026-05-07 00:49:48,706 INFO core.middleware Method: GET | Endpoint: /auth/github/poll | Status: 200 | Response-Time: 0.1140ms
+2026-05-07 00:49:53,744 INFO core.middleware Method: GET | Endpoint: /auth/github/callback | Status: 200 | Response-Time: 11.0305ms
+2026-05-07 00:49:56,317 INFO core.middleware Method: GET | Endpoint: /auth/github/poll | Status: 200 | Response-Time: 0.2104ms
+2026-05-07 00:57:15,986 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\users\views.py changed, reloading.
+2026-05-07 00:57:23,782 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-07 00:58:06,074 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\project\views.py changed, reloading.
+2026-05-07 00:58:11,792 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-07 00:58:30,563 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\project\urls.py changed, reloading.
+2026-05-07 00:58:36,290 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-07 00:58:44,814 ERROR django.request Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\project\views.py", line 11, in redirect_user
+    url = reverse('auth:login')
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\.venv\Lib\site-packages\django\urls\base.py", line 98, in reverse
+    resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\.venv\Lib\site-packages\django\urls\resolvers.py", line 842, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'login' not found. 'login' is not a valid view function or pattern name.
+2026-05-07 00:58:44,838 INFO core.middleware Method: GET | Endpoint: / | Status: 500 | Response-Time: 0.2941ms
+2026-05-07 00:59:17,352 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\users\views.py changed, reloading.
+2026-05-07 00:59:21,629 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-07 01:01:05,569 ERROR django.request Internal Server Error: /
+Traceback (most recent call last):
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\.venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\.venv\Lib\site-packages\django\core\handlers\base.py", line 198, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\MY PC\documents\projects\hng\stage-1\project\views.py", line 12, in redirect_user
+    return HttpRequest(f'<p> Nothing to see here </p> <p> Login via <a href="{url}"> Login page </a>.')
+TypeError: HttpRequest.__init__() takes 1 positional argument but 2 were given
+2026-05-07 01:01:05,615 INFO core.middleware Method: GET | Endpoint: / | Status: 500 | Response-Time: 0.3314ms
+2026-05-07 01:02:37,893 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\project\views.py changed, reloading.
+2026-05-07 01:02:46,914 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-07 01:04:05,759 INFO core.middleware Method: GET | Endpoint: / | Status: 200 | Response-Time: 0.0704ms
+2026-05-07 01:04:08,395 INFO core.middleware Method: GET | Endpoint: /auth/github | Status: 200 | Response-Time: 0.0148ms
+2026-05-07 01:05:29,916 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\project\views.py changed, reloading.
+2026-05-07 01:05:37,170 INFO django.utils.autoreload Watching for file changes with StatReloader
