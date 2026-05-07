@@ -229,3 +229,5 @@ JWT_SECRET_ALGORITHM= os.getenv('JWT_SECRET_ALGORITHM')
 # expity time of token in seconds
 JWT_ACCESS_EXP_TIME= timedelta(minutes=60)
 JWT_REFRESH_EXP_TIME= timedelta(minutes=120)
+
+CALLBACK_URL = os.getenv("CALLBACK_URL")
