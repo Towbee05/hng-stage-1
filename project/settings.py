@@ -99,6 +99,31 @@ if os.getenv("ENVIRONMENT") == "PRODUCTION":
             'CONN_MAX_AGE': 0,
         }
     }
+
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+
+        "formatters": {
+            "verbose": {
+                "format": "{asctime} {levelname} {name} {message}",
+                "style": "{",
+            },
+        },
+
+        "handlers": {
+            "console": {
+                "class": "logging.StreamHandler",
+                "formatter": "verbose",
+            },
+        },
+
+        "root": {
+            "handlers": ["console"],
+            "level": "INFO",
+        },
+    }
+
 else:
     DATABASES = {
         'default': {
@@ -110,6 +135,34 @@ else:
             'PORT': os.getenv('POSTGRES_PORT')
         }
     }
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": "{asctime} {levelname} {name} {message}",
+                "style": "{",
+            },
+        },
+        "handlers": {
+            "file": {
+                "class": "logging.FileHandler",
+                "filename": "logger_info.log",
+                "formatter": "verbose",
+            },
+        },
+        "loggers": {
+            "root": {
+                "handlers": ["file"],
+                "level": "INFO",
+            },
+            "ninja_aio": {
+                "handlers": ["file"],
+                "level": "INFO",
+            },
+        },
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators
@@ -175,31 +228,3 @@ JWT_SECRET_ALGORITHM= os.getenv('JWT_SECRET_ALGORITHM')
 # expity time of token in seconds
 JWT_ACCESS_EXP_TIME= timedelta(minutes=60)
 JWT_REFRESH_EXP_TIME= timedelta(minutes=120)
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "formatters": {
-        "verbose": {
-            "format": "{asctime} {levelname} {name} {message}",
-            "style": "{",
-        },
-    },
-    "handlers": {
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "logger_info.log",
-            "formatter": "verbose",
-        },
-    },
-    "loggers": {
-        "root": {
-            "handlers": ["file"],
-            "level": "INFO",
-        },
-        "ninja_aio": {
-            "handlers": ["file"],
-            "level": "INFO",
-        },
-    },
-}
