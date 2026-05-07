@@ -444,3 +444,4 @@ TypeError: HttpRequest.__init__() takes 1 positional argument but 2 were given
 2026-05-07 01:04:08,395 INFO core.middleware Method: GET | Endpoint: /auth/github | Status: 200 | Response-Time: 0.0148ms
 2026-05-07 01:05:29,916 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\project\views.py changed, reloading.
 2026-05-07 01:05:37,170 INFO django.utils.autoreload Watching for file changes with StatReloader
+2026-05-07 01:32:45,760 INFO django.utils.autoreload C:\Users\MY PC\Documents\projects\hng\stage-1\project\settings.py changed, reloading.
