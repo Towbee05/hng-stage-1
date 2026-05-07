@@ -26,4 +26,13 @@ This is a profile intelligence system that accepts a name and submit the name to
 ## Live Application
 
 - [Github](https://github.com/towbee05/hng-stage-1)
-- [Live mode](hng-stage-1-eight-tan.vercel.app)
+- [Live mode](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/)
+
+## Endpoints
+
+- Fetch github authorization url [GET]- [https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/auth/github](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/auth/github)
+- Github callback url [GET]- [https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/auth/github/callback](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/auth/github/callback)
+- Create Profile [POST]- [https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles)
+- Fetch Profile [POST]- [https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles/{id}](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles/id)
+- Search Profile [GET]- [https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles/search?q={search}](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles/search?q=males)
+- Export Profile [GET]- [https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles/?format={format}](https://hng-stage-1-ftwj62hfg-olatise-oluwatobilobas-projects.vercel.app/api/profiles/export?format=json)
