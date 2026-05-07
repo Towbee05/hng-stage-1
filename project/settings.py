@@ -14,6 +14,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 from datetime import timedelta
+from corsheaders.defaults import default_headers
 
 load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -231,3 +232,8 @@ JWT_ACCESS_EXP_TIME= timedelta(minutes=60)
 JWT_REFRESH_EXP_TIME= timedelta(minutes=120)
 
 CALLBACK_URL = os.getenv("CALLBACK_URL")
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "x-api-version",
+    "authorization",
+]
